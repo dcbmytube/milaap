@@ -555,12 +555,12 @@
   }).render('#donbutton');</script>
 </div> -->
 <div id="smart-button-container">
-  <div style="text-align: center"><label for="description">Name </label><input type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
-    <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a description</p>
-  <div style="text-align: center"><label for="amount">Amount </label><input name="amountInput" type="number" id="amount" value="" ><span> USD</span></div>
-    <p id="priceLabelError" style="visibility: hidden; color:red; text-align: center;">Please enter a price</p>
+  <div style="text-align: center"><label for="description" style="display: none;">Name </label><input placeholder="Name*" type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
+    <p id="descriptionError" style="display: none; color:red; text-align: center;">Please enter your name</p>
+  <div style="text-align: center"><label for="amount"  style="display: none;">Amount </label><input placeholder="Amount (USD only)*" name="amountInput" type="number" id="amount" value="" ></div>
+    <p id="priceLabelError" style="display: none; color:red; text-align: center;">Please enter an amount in USD only</p>
   <div id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input name="invoiceid" maxlength="127" type="text" id="invoiceid" value="" ></div>
-    <p id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an Invoice ID</p>
+    <p id="invoiceidError" style="display: none; color:red; text-align: center;">Something went wrong! Please try another way</p>
   <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
 </div>
 <script src="https://www.paypal.com/sdk/js?client-id=AYieaiQRJHox1LY-gZXfVy2h0a4sH9amh8CssH5j7QvGJZSvpwUEytqdzHxElmaT5NHPdNuQg758Lo9x&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
@@ -618,21 +618,21 @@ function initPayPalButton() {
 
     onClick: function () {
       if (description.value.length < 1) {
-        descriptionError.style.visibility = "visible";
+        descriptionError.style.display = "block";
       } else {
-        descriptionError.style.visibility = "hidden";
+        descriptionError.style.display = "none";
       }
 
       if (amount.value.length < 1) {
-        priceError.style.visibility = "visible";
+        priceError.style.display = "block";
       } else {
-        priceError.style.visibility = "hidden";
+        priceError.style.display = "none";
       }
 
       if (invoiceid.value.length < 1 && invoiceidDiv.style.display === "block") {
-        invoiceidError.style.visibility = "visible";
+        invoiceidError.style.display = "block";
       } else {
-        invoiceidError.style.visibility = "hidden";
+        invoiceidError.style.display = "none";
       }
 
       purchase_units[0].description = description.value;
